@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- build v1.5-2 -->
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07090b">
@@ -278,8 +277,11 @@ footer a{color:var(--soft);text-decoration:none}
 <footer><div class="w">© Aurora Mantenimiento · Carúpano, Venezuela<br>aurora.mantenimiento@gmail.com · +58 0412 0915616</div></footer>
 <script>
 // ====== EDITA SOLO ESTO ======
-var APK_URL="https://github.com/AuroraNegocio/Aurora/releases/download/v1.5/Aurora.Negocio.Android.apk";        // enlace directo al APK (GitHub Releases, gratis)
-var APK_VERSION="v1.5";    // ej. "v1.0"
+// DESCARGA SIEMPRE EL APK DE LA RELEASE MÁS RECIENTE DE GITHUB.
+// IMPORTANTE: cada nueva Release debe incluir un asset llamado exactamente
+// "Aurora.Negocio.Android.apk". No hace falta volver a editar esta página.
+var APK_URL="https://github.com/AuroraNegocio/Aurora/releases/latest/download/Aurora.Negocio.Android.apk";
+var APK_VERSION="";    // Se deja vacío para no mostrar una versión antigua en la web.
 var TESTIMONIOS=[];    // [{t:"Me ordenó el negocio",n:"María, bodega"}]
 // =============================
 var d=document.getElementById("dl"),m=document.getElementById("msg");

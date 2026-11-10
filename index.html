@@ -1,127 +1,267 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0f14">
+<meta name="theme-color" content="#07090b">
 <title>Aurora Negocio — Vende · Cobra · Controla</title>
 <meta name="description" content="App Android de punto de venta y control de negocio. Ventas, inventario, créditos, gastos y reportes. 7 días gratis.">
+<meta property="og:title" content="Aurora Negocio — Vende · Cobra · Controla">
+<meta property="og:description" content="Tu negocio completo, en tu teléfono. 7 días gratis, sin tarjeta.">
+<meta property="og:image" content="assets/s_inicio.webp">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-color-scheme:dark;--bg:#0b0f14;--card:#141a22;--card2:#1a222c;--tx:#f2f5f9;--soft:#a7b3c2;--bd:#2b3441;--g:#25b567;--g2:#1b9e52;--c:#38bdf8}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;height:auto}
+color-scheme:dark;
+--bg:#07090b;--s1:#0c1014;--s2:#11161b;--s3:#161c22;
+--tx:#eef1f4;--soft:#98a3ae;--dim:#6b7681;
+--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);
+--g:#2fc974;--g2:#1b9e52;--gd:#0f6b37;
+--plat:linear-gradient(180deg,#ffffff 0%,#dfe5ea 45%,#9aa6b2 100%);
+--ease:cubic-bezier(.2,.7,.2,1)}
+html{scroll-padding-top:84px;scroll-behavior:smooth;height:auto;-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
-.w{max-width:1060px;margin:auto;padding:0 20px}
-.glow{background-image:radial-gradient(700px 420px at 85% -5%,rgba(37,181,103,.30),transparent),radial-gradient(520px 320px at -5% 60%,rgba(56,189,248,.14),transparent)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}.brand img{width:40px;height:40px;border-radius:50%}
-.nav a.s{color:var(--soft);font-size:14px;text-decoration:none}
-.hero{display:grid;gap:30px;align-items:center;padding:36px 0 70px}
-@media(min-width:820px){.hero{grid-template-columns:1.1fr .9fr}}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--g2);color:var(--g);border-radius:99px;padding:5px 14px;font-size:12.5px;font-weight:600;background:rgba(37,181,103,.08)}
-h1{font-size:clamp(32px,6.2vw,56px);line-height:1.08;margin:16px 0;font-weight:800}h1 b,h2 b{color:var(--g)}
-.lead{color:#c3cdd9;font-size:clamp(16px,2.4vw,19px);max-width:540px}
-.btn{display:inline-block;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;text-decoration:none;font-weight:700;padding:15px 26px;border-radius:14px;font-size:16px;box-shadow:0 8px 28px rgba(27,158,82,.35)}
-.btn.o{background:none;border:1.5px solid var(--bd);box-shadow:none;color:var(--tx)}
-.btns{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
-.pills{display:flex;flex-wrap:wrap;gap:8px}.pills span{border:1px solid var(--bd);border-radius:99px;padding:5px 13px;font-size:13px;color:var(--soft);background:rgba(255,255,255,.03)}
-.shot{border-radius:22px;border:1px solid #2b3441;box-shadow:0 20px 60px rgba(0,0,0,.55),0 0 80px rgba(37,181,103,.16);max-width:100%;display:block}
-.heroimg{display:flex;justify-content:center}.heroimg .shot{width:min(78vw,330px)}
-section{padding:60px 0}
-h2{font-size:clamp(25px,4.4vw,38px);margin:0 0 10px;line-height:1.15;font-weight:800}.sub{color:var(--soft);margin:0 0 30px;max-width:620px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px;border-radius:8px}
+.w{max-width:1080px;margin:auto;padding:0 24px}
+
+/* ---------- Navegación ---------- */
+.top{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+.top.on{background:rgba(7,9,11,.72);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.32em}
+.brand img{width:38px;height:38px;border-radius:50%;box-shadow:0 0 0 1px var(--line2),0 6px 20px rgba(0,0,0,.5)}
+.links{display:flex;align-items:center;gap:30px}
+.links a{color:var(--soft);font-size:13.5px;font-weight:500;text-decoration:none;transition:color .2s}
+.links a:hover{color:var(--tx)}
+.links a.pill{color:var(--tx);border:1px solid var(--line2);border-radius:99px;padding:9px 20px;background:rgba(255,255,255,.03);transition:border-color .25s,background .25s}
+.links a.pill:hover{border-color:var(--g);background:rgba(47,201,116,.08)}
+@media(max-width:640px){.links a:not(.pill){display:none}.brand{letter-spacing:.22em}}
+
+/* ---------- Hero ---------- */
+.hero-bg{position:relative;overflow:hidden;margin-top:-72px;padding-top:72px;
+background:radial-gradient(760px 520px at 82% 18%,rgba(47,201,116,.16),transparent 70%),radial-gradient(600px 400px at 8% 70%,rgba(154,166,178,.07),transparent 70%)}
+.hero{position:relative;display:grid;gap:44px;align-items:center;padding:56px 0 96px}
+@media(min-width:860px){.hero{grid-template-columns:1.12fr .88fr;padding:84px 0 120px}}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line2);color:var(--tx);border-radius:99px;padding:7px 16px 7px 12px;font-size:12.5px;font-weight:500;background:rgba(255,255,255,.03)}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 0 4px rgba(47,201,116,.18),0 0 14px var(--g)}
+h1,h2,h3{font-weight:600;margin:0}
+h1{font-size:clamp(38px,6.6vw,68px);line-height:1.04;letter-spacing:-.03em;margin:26px 0 24px;background:var(--plat);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.08em}
+h1 b{display:block;font-weight:300}
+.lead{color:#b4bec9;font-size:clamp(16px,2.2vw,18.5px);max-width:30em;margin:0;font-weight:400;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:14px;margin:36px 0 34px}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.01em;padding:16px 30px;border-radius:99px;border:0;cursor:pointer;font-family:inherit;
+background:linear-gradient(180deg,#34d27c 0%,var(--g2) 100%);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 0 rgba(0,0,0,.4),0 14px 36px -8px rgba(47,201,116,.55);
+transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 1px 0 rgba(0,0,0,.4),0 20px 44px -8px rgba(47,201,116,.7)}
+.btn:active{transform:translateY(0)}
+.btn.o{background:rgba(255,255,255,.03);border:1px solid var(--line2);box-shadow:none;color:var(--tx)}
+.btn.o:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07);box-shadow:none}
+.pills{display:flex;flex-wrap:wrap;gap:10px 22px;padding:0;margin:0;list-style:none}
+.pills li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--soft)}
+.pills svg{width:17px;height:17px;stroke:#c9d1d9;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:460px}
+.emblem{position:absolute;width:min(520px,118%);aspect-ratio:1;border-radius:50%;object-fit:cover;opacity:.2;mix-blend-mode:screen;animation:spin 140s linear infinite;
+-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 71%);mask-image:radial-gradient(circle,#000 52%,transparent 71%);pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage .frame{position:relative;width:min(74vw,320px)}
+.stage .frame:before{content:"";position:absolute;inset:8% -14% -6%;background:radial-gradient(closest-side,rgba(47,201,116,.38),transparent);filter:blur(34px);z-index:-1}
+
+/* marco con filo platino */
+.frame{padding:1px;border-radius:28px;background:linear-gradient(155deg,rgba(255,255,255,.55),rgba(255,255,255,.05) 38%,rgba(255,255,255,.04) 62%,rgba(255,255,255,.28));box-shadow:0 40px 80px -24px rgba(0,0,0,.85)}
+.frame img{display:block;width:100%;height:auto;border-radius:27px;background:#000}
+
+/* secuencia de entrada: un solo momento, solo en el hero */
+.in{opacity:0;transform:translateY(16px);animation:rise .9s var(--ease) forwards}
+.in:nth-child(1){animation-delay:.05s}.in:nth-child(2){animation-delay:.16s}.in:nth-child(3){animation-delay:.27s}.in:nth-child(4){animation-delay:.38s}.in:nth-child(5){animation-delay:.49s}
+.stage{opacity:0;animation:rise 1.1s .25s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- Secciones ---------- */
+.sec{padding:110px 0}
+.alt{background:linear-gradient(180deg,var(--s1),var(--bg));border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4.4vw,44px);line-height:1.12;letter-spacing:-.025em;background:var(--plat);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.08em}
+h2 b{font-weight:300}
+.sub{color:var(--soft);margin:16px 0 0;max-width:34em;font-size:16px}
 .center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
-.gal{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 22px;-webkit-overflow-scrolling:touch}
-.gal .shot{width:250px;flex:none;scroll-snap-align:center}
-.vids{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.vcard{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:14px}
-.vcard video,.vcard img{width:100%;border-radius:14px;display:block;background:#000;aspect-ratio:9/16;object-fit:cover}
-.vcard h3{margin:14px 4px 2px;font-size:17px}.vcard p{margin:0 4px 6px;color:var(--soft);font-size:14px}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px}
-.card h3{margin:10px 0 4px;font-size:17px}.card p{margin:0;color:var(--soft);font-size:14.5px}.ic{font-size:28px}
-.alt{background:var(--card);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
-.split{display:grid;gap:30px;align-items:center}@media(min-width:820px){.split{grid-template-columns:1fr 1fr}}
-.ok{list-style:none;padding:0;margin:0;display:grid;gap:12px}.ok li{padding-left:30px;position:relative}.ok li:before{content:"✓";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:rgba(37,181,103,.18);color:var(--g);font-weight:800;font-size:13px;display:grid;place-items:center}
-.steps{display:grid;gap:12px;counter-reset:s}
-.step{display:flex;gap:14px;background:var(--card2);border:1px solid var(--bd);border-radius:16px;padding:16px}
-.step:before{counter-increment:s;content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--g2);font-weight:800;display:grid;place-items:center}
-.step b{display:block}.step span{color:var(--soft);font-size:14.5px}
-.price{text-align:center}.n{font-size:38px;font-weight:800;color:var(--g)}.best{border:2px solid var(--g2);box-shadow:0 0 40px rgba(37,181,103,.2)}
-.tag{font-size:12px;background:var(--g2);border-radius:99px;padding:3px 12px;font-weight:700}
-details{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:15px 18px;margin-bottom:10px}summary{cursor:pointer;font-weight:600}details p{color:var(--soft);margin:10px 0 0}
-.cta{border:1px solid var(--g2);border-radius:26px;padding:44px 22px;text-align:center;background:radial-gradient(500px 240px at 50% 0,rgba(37,181,103,.28),transparent),var(--card)}
-.cta img{width:84px;height:84px;border-radius:50%;margin-bottom:12px}.cta p{color:#c3cdd9}
-#msg{font-size:13px;margin-top:12px;color:#f2b544}
-.q{font-style:italic}.who{color:var(--soft);font-size:13px;margin-top:8px}
-footer{padding:30px 0 48px;color:var(--soft);font-size:13px;text-align:center}
+.head{margin-bottom:56px}
+
+/* galería */
+.galwrap{position:relative}
+.gal{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 24px 34px;scrollbar-width:none;-webkit-overflow-scrolling:touch;justify-content:flex-start}
+.gal::-webkit-scrollbar{display:none}
+@media(min-width:1000px){.gal{justify-content:center}}
+.gal .frame{width:248px;flex:none;scroll-snap-align:center;transition:transform .5s var(--ease)}
+.gal .frame:hover{transform:translateY(-8px)}
+
+/* videos */
+.vids{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.vcard{display:flex;flex-direction:column}
+.vcard .frame{border-radius:26px}
+.vcard .frame img{aspect-ratio:9/16;object-fit:cover;border-radius:25px}
+.vcard h3{margin:22px 4px 6px;font-size:18px;letter-spacing:-.01em}
+.vcard p{margin:0 4px;color:var(--soft);font-size:14.5px}
+
+/* funciones: una sola pieza con filos internos, no tarjetas sueltas */
+.feat{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:26px;overflow:hidden;grid-template-columns:1fr}
+@media(min-width:560px){.feat{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.feat{grid-template-columns:repeat(4,1fr)}}
+.cell{position:relative;background:var(--s1);padding:34px 28px 36px;transition:background .35s}
+.cell:hover{background:var(--s2)}
+.cell svg{width:30px;height:30px;stroke:#d5dbe1;fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;margin-bottom:26px;display:block}
+.cell h3{font-size:17px;margin:0 0 8px;letter-spacing:-.01em}
+.cell p{margin:0;color:var(--soft);font-size:14.5px;line-height:1.6}
+.cell.hot{background:radial-gradient(300px 220px at 0 0,rgba(47,201,116,.14),transparent 75%),var(--s1)}
+.cell.hot svg{stroke:var(--g)}
+
+/* confianza */
+.split{display:grid;gap:56px;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1.05fr .95fr}}
+.split h2{max-width:11em}
+.ok{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:0}
+.ok li{padding:18px 0 18px 42px;position:relative;border-top:1px solid var(--line);color:#c4ccd5;font-size:15px}
+.ok li:last-child{border-bottom:1px solid var(--line)}
+.ok li b{color:var(--tx);font-weight:600}
+.ok li:before{content:"✓";position:absolute;left:0;top:18px;width:26px;height:26px;border-radius:50%;border:1px solid rgba(47,201,116,.45);background:rgba(47,201,116,.1);color:var(--g);font-weight:700;font-size:12px;display:grid;place-items:center}
+.firma{margin:28px 0 0;color:var(--dim);font-size:13.5px;letter-spacing:.02em}
+.split .frame{width:min(90vw,400px);justify-self:center}
+
+/* pasos: sí es una secuencia */
+.steps{max-width:660px;margin:auto;position:relative;display:grid;gap:18px;counter-reset:s}
+.steps:before{content:"";position:absolute;left:25px;top:30px;bottom:30px;width:1px;background:linear-gradient(var(--line2),var(--line2) 70%,transparent)}
+.step{position:relative;display:flex;gap:22px;align-items:flex-start;padding:4px 0}
+.step:before{counter-increment:s;content:counter(s);flex:none;width:51px;height:51px;border-radius:50%;background:var(--bg);border:1px solid var(--line2);font-weight:500;font-size:17px;display:grid;place-items:center;position:relative;z-index:1;color:var(--tx);box-shadow:0 0 0 6px var(--bg)}
+.step:last-child:before{border-color:rgba(47,201,116,.6);color:var(--g);background:rgba(47,201,116,.08)}
+.step b{display:block;font-size:18px;font-weight:600;margin:10px 0 4px;letter-spacing:-.01em}
+.step span{color:var(--soft);font-size:15px;display:block}
+
+/* planes */
+.plans{display:grid;gap:18px;grid-template-columns:1fr;align-items:stretch}
+@media(min-width:780px){.plans{grid-template-columns:repeat(3,1fr)}}
+.plan{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:44px 24px 40px;border-radius:26px;background:var(--s1);border:1px solid var(--line)}
+.plan h3{font-size:15px;font-weight:500;color:var(--soft);letter-spacing:.02em}
+.plan .n{font-size:64px;font-weight:300;letter-spacing:-.04em;line-height:1;margin:18px 0 12px;background:var(--plat);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.plan p{margin:0;color:var(--dim);font-size:14px}
+.plan.best{padding-top:54px;padding-bottom:50px;border-color:transparent;background:linear-gradient(var(--s2),var(--s2)) padding-box,linear-gradient(160deg,#ffffff,rgba(47,201,116,.9) 40%,rgba(255,255,255,.12) 75%,#aab4bf) border-box;border:1.5px solid transparent;box-shadow:0 30px 70px -26px rgba(47,201,116,.45)}
+.plan.best .n{font-size:76px}
+.plan.best h3{color:var(--tx)}
+.tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:600;background:linear-gradient(180deg,#34d27c,var(--g2));color:#fff;border-radius:99px;padding:5px 16px;white-space:nowrap;box-shadow:0 8px 22px -6px rgba(47,201,116,.7)}
+
+/* preguntas */
+.faq{max-width:760px;margin:auto}
+details{border-top:1px solid var(--line);padding:0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:500;font-size:16.5px;padding:24px 44px 24px 2px;list-style:none;position:relative;transition:color .2s}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:#fff}
+summary:after{content:"";position:absolute;right:4px;top:50%;width:11px;height:11px;margin-top:-8px;border-right:1.5px solid var(--soft);border-bottom:1.5px solid var(--soft);transform:rotate(45deg);transition:transform .3s var(--ease),border-color .3s}
+details[open] summary:after{transform:rotate(225deg);margin-top:-3px;border-color:var(--g)}
+details p{color:var(--soft);margin:0;padding:0 44px 26px 2px;font-size:15px}
+
+/* cierre */
+.cta{position:relative;overflow:hidden;border-radius:34px;padding:78px 24px 70px;text-align:center;border:1px solid var(--line2);
+background:radial-gradient(560px 300px at 50% 0,rgba(47,201,116,.26),transparent 72%),linear-gradient(180deg,var(--s2),var(--s1))}
+.cta .logo{width:92px;height:92px;border-radius:50%;margin:0 auto 26px;display:block;box-shadow:0 0 0 1px var(--line2),0 0 0 9px rgba(255,255,255,.03),0 18px 50px rgba(0,0,0,.6)}
+.cta p{color:#b4bec9;margin:14px 0 0}
+.cta .btn{margin-top:34px;font-size:16px;padding:18px 38px}
+.cta .wa{font-size:14px;margin-top:34px}
+.cta .wa a{color:var(--g);font-weight:600;text-underline-offset:4px}
+#msg{font-size:13.5px;margin-top:16px;color:#f2b544;min-height:1.2em}
+
+.q{font-style:italic}.who{color:var(--soft);font-size:13px;margin-top:10px}
+.tes-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tes-grid .card{background:var(--s1);border:1px solid var(--line);border-radius:22px;padding:28px}
+.tes-grid .card p{margin:0;color:#c4ccd5;font-size:16px}
+#tes h2{margin:72px 0 36px;text-align:center}
+
+footer{padding:44px 0 56px;color:var(--dim);font-size:13px;text-align:center;border-top:1px solid var(--line);line-height:1.9}
+footer a{color:var(--soft);text-decoration:none}
+
+@media(max-width:640px){.sec{padding:78px 0}.head{margin-bottom:40px}.hero{padding-bottom:72px}.stage{min-height:420px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.emblem{animation:none}.in,.stage{animation:none;opacity:1;transform:none}.btn,.gal .frame{transition:none}}
 </style></head><body>
-<div class="glow"><div class="w">
-<div class="nav"><div class="brand"><img alt="Logo Aurora" src="assets/logo.png"><span>AURORA NEGOCIO</span></div><a class="s" href="#descargar">Descargar</a></div>
+
+<header class="top" id="top"><div class="w"><nav class="nav">
+<a class="brand" href="#" aria-label="Aurora Negocio"><img alt="" src="assets/logo.png" width="38" height="38"><span>AURORA NEGOCIO</span></a>
+<div class="links"><a href="#funciones">Funciones</a><a href="#planes">Planes</a><a class="pill" href="#descargar">Descargar</a></div>
+</nav></div></header>
+
+<div class="hero-bg"><div class="w">
 <div class="hero">
 <div>
-<span class="eyebrow">● 7 días gratis · Sin tarjeta</span>
-<h1>Tu negocio completo, <b>en tu teléfono.</b></h1>
-<p class="lead">Ventas, inventario, créditos, gastos, cierres y reportes en una sola app Android. Con asistente de IA y voz, y sin depender del internet.</p>
-<div class="btns"><a class="btn" href="#descargar">Probar 7 días gratis</a><a class="btn o" href="#videos">Ver la app en acción</a></div>
-<div class="pills"><span>📴 Funciona sin internet</span><span>🔒 Tus datos, en tu teléfono</span><span>🇻🇪 Hecha en Carúpano</span></div>
+<div class="in"><span class="eyebrow"><i></i>7 días gratis · Sin tarjeta</span></div>
+<h1 class="in">Tu negocio completo, <b>en tu teléfono.</b></h1>
+<p class="lead in">Ventas, inventario, créditos, gastos, cierres y reportes en una sola app Android. Con asistente de IA y voz, y sin depender del internet.</p>
+<div class="btns in"><a class="btn" href="#descargar">Probar 7 días gratis</a><a class="btn o" href="#videos">Ver la app en acción</a></div>
+<ul class="pills in">
+<li><svg viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><path d="M3 3l18 18"/></svg>Funciona sin internet</li>
+<li><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Tus datos, en tu teléfono</li>
+<li><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Hecha en Carúpano</li>
+</ul>
 </div>
-<div class="heroimg"><img class="shot" alt="Pantalla de inicio de Aurora Negocio" src="assets/s_inicio.webp" width="360" height="640"></div>
-</div></div></div>
+<div class="stage"><img class="emblem" alt="" src="assets/logo.png" width="520" height="520"><div class="frame"><img alt="Pantalla de inicio de Aurora Negocio" src="assets/s_inicio.webp" width="360" height="640"></div></div>
+</div>
+</div></div>
 
-<section><div class="w center"><h2>Conoce la app <b>por dentro</b></h2><p class="sub">Capturas reales de Aurora Negocio funcionando. Sin montajes.</p></div>
-<div class="w"><div class="gal">
-<img class="shot" alt="Inicio" src="assets/s_inicio.webp" loading="lazy">
-<img class="shot" alt="Productos e inventario" src="assets/s_productos.webp" loading="lazy">
-<img class="shot" alt="Asistente de IA" src="assets/s_ia.webp" loading="lazy">
-<img class="shot" alt="Personalización de colores" src="assets/s_color.webp" loading="lazy">
+<section class="sec"><div class="w center head" style="margin-bottom:34px"><h2>Conoce la app <b>por dentro</b></h2><p class="sub">Capturas reales de Aurora Negocio funcionando. Sin montajes.</p></div>
+<div class="galwrap"><div class="gal">
+<div class="frame"><img alt="Inicio" src="assets/s_inicio.webp" width="360" height="640" loading="lazy"></div>
+<div class="frame"><img alt="Productos e inventario" src="assets/s_productos.webp" width="360" height="640" loading="lazy"></div>
+<div class="frame"><img alt="Asistente de IA" src="assets/s_ia.webp" width="360" height="640" loading="lazy"></div>
+<div class="frame"><img alt="Personalización de colores" src="assets/s_color.webp" width="360" height="640" loading="lazy"></div>
 </div></div></section>
 
-<section id="videos" class="alt"><div class="w"><div class="center"><h2>Míralo <b>funcionando</b></h2><p class="sub">Tres demostraciones cortas para que veas exactamente qué recibes antes de instalar.</p></div>
+<section id="videos" class="sec alt"><div class="w"><div class="center head"><h2>Míralo <b>funcionando</b></h2><p class="sub">Tres demostraciones cortas para que veas exactamente qué recibes antes de instalar.</p></div>
 <div class="vids">
-<div class="vcard"><img alt="Aurora con IA y voz" src="assets/gif_ia.gif" loading="lazy"><h3>Aurora con IA y voz</h3><p>Registra ventas hablando. La IA propone, tú confirmas.</p></div><div class="vcard"><img alt="Modo PC" src="assets/gif_pc.gif" loading="lazy"><h3>Modo PC</h3><p>Usa tu negocio desde la computadora en 3 pasos.</p></div><div class="vcard"><img alt="Personalización" src="assets/gif_pers.gif" loading="lazy"><h3>Personalización</h3><p>8 colores, tema y letra a tu medida.</p></div>
+<div class="vcard"><div class="frame"><img alt="Aurora con IA y voz" src="assets/gif_ia.gif" width="300" height="533" loading="lazy"></div><h3>Aurora con IA y voz</h3><p>Registra ventas hablando. La IA propone, tú confirmas.</p></div>
+<div class="vcard"><div class="frame"><img alt="Modo PC" src="assets/gif_pc.gif" width="300" height="533" loading="lazy"></div><h3>Modo PC</h3><p>Usa tu negocio desde la computadora en 3 pasos.</p></div>
+<div class="vcard"><div class="frame"><img alt="Personalización" src="assets/gif_pers.gif" width="300" height="533" loading="lazy"></div><h3>Personalización</h3><p>8 colores, tema y letra a tu medida.</p></div>
 </div></div></section>
 
-<section><div class="w"><div class="center"><h2>Todo lo que necesitas <b>en un solo lugar</b></h2><p class="sub">Sin cuadernos ni hojas de cálculo.</p></div>
-<div class="grid">
-<div class="card"><div class="ic">🛒</div><h3>Ventas</h3><p>Registra ventas rápido, con tickets y tasas de cambio al día.</p></div>
-<div class="card"><div class="ic">📦</div><h3>Inventario</h3><p>Existencias, compras y escáner de códigos de barras.</p></div>
-<div class="card"><div class="ic">🤝</div><h3>Créditos y clientes</h3><p>Quién te debe, cuánto y desde cuándo. Cuentas por pagar también.</p></div>
-<div class="card"><div class="ic">💸</div><h3>Gastos y bancos</h3><p>Anota gastos y movimientos para saber tu ganancia real.</p></div>
-<div class="card"><div class="ic">📊</div><h3>Cierres y reportes</h3><p>Cierre de caja diario y reportes en PDF o Excel.</p></div>
-<div class="card"><div class="ic">🎙️</div><h3>Asistente con IA y voz</h3><p>Dile qué vendiste y la IA arma la venta. Tú confirmas.</p></div>
-<div class="card"><div class="ic">💻</div><h3>Modo PC</h3><p>Usa tu negocio desde el navegador de tu computadora, en tu misma red WiFi.</p></div>
-<div class="card"><div class="ic">🎨</div><h3>Tuya, a tu medida</h3><p>8 colores, tema claro u oscuro, y letra y densidad ajustables.</p></div>
+<section id="funciones" class="sec"><div class="w"><div class="center head"><h2>Todo lo que necesitas <b>en un solo lugar</b></h2><p class="sub">Sin cuadernos ni hojas de cálculo.</p></div>
+<div class="feat">
+<div class="cell"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.5a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L19 8H6"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg><h3>Ventas</h3><p>Registra ventas rápido, con tickets y tasas de cambio al día.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg><h3>Inventario</h3><p>Existencias, compras y escáner de códigos de barras.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 4.8"/></svg><h3>Créditos y clientes</h3><p>Quién te debe, cuánto y desde cuándo. Cuentas por pagar también.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 14.5h2"/></svg><h3>Gastos y bancos</h3><p>Anota gastos y movimientos para saber tu ganancia real.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg><h3>Cierres y reportes</h3><p>Cierre de caja diario y reportes en PDF o Excel.</p></div>
+<div class="cell hot"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><h3>Asistente con IA y voz</h3><p>Dile qué vendiste y la IA arma la venta. Tú confirmas.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><h3>Modo PC</h3><p>Usa tu negocio desde el navegador de tu computadora, en tu misma red WiFi.</p></div>
+<div class="cell"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-1.3-1-1.7-1-2.7 0-.9.7-1.5 1.6-1.5H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/></svg><h3>Tuya, a tu medida</h3><p>8 colores, tema claro u oscuro, y letra y densidad ajustables.</p></div>
 </div></div></section>
 
-<section class="alt"><div class="w split">
+<section class="sec alt"><div class="w split">
 <div><h2>¿Por qué puedes <b>confiar</b>?</h2><p class="sub">Sabemos que instalar una app fuera de la tienda da dudas. Aquí va con transparencia.</p>
 <ul class="ok">
 <li><b>La IA propone, tú decides:</b> siempre te pide confirmar y nunca borra nada.</li>
 <li>La IA nunca ve teléfonos ni cédulas de tus clientes.</li>
 <li>Tus datos viven en tu teléfono, no en nuestros servidores.</li>
 <li>Licencias con firma digital, sin cobros ocultos.</li>
-<li>Soporte directo por WhatsApp con el desarrollador.</li>
+<li>Soporte directo por WhatsApp, sin intermediarios.</li>
 </ul>
-<p class="sub" style="margin-top:20px"></b> · Aurora Mantenimiento · Venezuela.</p></div>
-<div class="heroimg"><img class="shot" alt="Informes en Modo PC" src="assets/s_pc.webp" loading="lazy" style="width:min(90vw,380px)"></div>
+<p class="firma">Aurora Mantenimiento · Carúpano, Estado Sucre.</p></div>
+<div class="frame"><img alt="Informes en Modo PC" src="assets/s_pc.webp" width="480" height="853" loading="lazy"></div>
 </div><div class="w" id="tes"></div></section>
 
-<section><div class="w"><div class="center"><h2>Empieza en <b>3 pasos</b></h2><p class="sub">Sin cuentas ni registros.</p></div>
-<div class="steps" style="max-width:640px;margin:auto">
+<section class="sec"><div class="w"><div class="center head"><h2>Empieza en <b>3 pasos</b></h2><p class="sub">Sin cuentas ni registros.</p></div>
+<div class="steps">
 <div class="step"><div><b>Descarga el APK</b><span>Desde esta página. Es el archivo oficial.</span></div></div>
 <div class="step"><div><b>Instálalo</b><span>Android te pedirá permitir instalar apps de esta fuente. Es normal mientras llegamos a Play Store.</span></div></div>
 <div class="step"><div><b>Pruébala 7 días gratis</b><span>Si te gusta, escríbeme por WhatsApp y te envío tu código de activación.</span></div></div>
 </div></div></section>
 
-<section class="alt"><div class="w"><div class="center"><h2>Planes <b>simples</b></h2><p class="sub">Pagas solo cuando ya la probaste.</p></div>
-<div class="grid">
-<div class="card price"><h3>Trimestral</h3><div class="n">$13</div><p>90 días</p></div>
-<div class="card price"><h3>Semestral</h3><div class="n">$25</div><p>180 días</p></div>
-<div class="card price best"><span class="tag">Mejor precio</span><h3>Anual</h3><div class="n">$45</div><p>365 días</p></div>
+<section id="planes" class="sec alt"><div class="w"><div class="center head"><h2>Planes <b>simples</b></h2><p class="sub">Pagas solo cuando ya la probaste.</p></div>
+<div class="plans">
+<div class="plan"><h3>Trimestral</h3><div class="n">$13</div><p>90 días</p></div>
+<div class="plan"><h3>Semestral</h3><div class="n">$25</div><p>180 días</p></div>
+<div class="plan best"><span class="tag">Mejor precio</span><h3>Anual</h3><div class="n">$45</div><p>365 días</p></div>
 </div></div></section>
 
-<section><div class="w" style="max-width:760px"><div class="center"><h2>Preguntas <b>frecuentes</b></h2></div><p class="sub">&nbsp;</p>
+<section class="sec"><div class="w faq"><div class="center head"><h2>Preguntas <b>frecuentes</b></h2></div>
 <details><summary>¿Por qué no está en Play Store?</summary><p>Estamos en proceso de publicarla. Mientras tanto la distribuimos desde esta página oficial.</p></details>
 <details><summary>¿Es seguro instalarla?</summary><p>Descárgala solo desde esta página. No necesita cuenta, guarda tus datos en tu teléfono y funciona sin internet.</p></details>
 <details><summary>¿Qué pasa al terminar los 7 días?</summary><p>Para seguir usándola activas un plan con un código. Tus datos no se pierden.</p></details>
@@ -129,23 +269,26 @@ footer{padding:30px 0 48px;color:var(--soft);font-size:13px;text-align:center}
 <details><summary>¿Y si tengo un problema?</summary><p>Escríbeme por WhatsApp y te ayudo directamente.</p></details>
 </div></section>
 
-<section id="descargar"><div class="w"><div class="cta"><img alt="" src="assets/logo.png"><h2>Descarga <b>Aurora Negocio</b></h2><p>7 días gratis · Android · Sin tarjeta</p>
+<section id="descargar" class="sec" style="padding-top:20px"><div class="w"><div class="cta"><img class="logo" alt="" src="assets/logo.png" width="92" height="92"><h2>Descarga <b>Aurora Negocio</b></h2><p>7 días gratis · Android · Sin tarjeta</p>
 <a class="btn" id="dl" href="#descargar">⬇ Descargar APK</a>
-<p style="font-size:13.5px;margin-top:22px">¿Ya la probaste y quieres tu código? <a id="wa" style="color:var(--g);font-weight:700" href="#">Escríbeme por WhatsApp</a></p>
-<div id="msg"></div></div></div></section>
+<p class="wa">¿Ya la probaste y quieres tu código? <a id="wa" href="#">Escríbeme por WhatsApp</a></p>
+<div id="msg" role="status"></div></div></div></section>
 
-<footer><div class="w">© Aurora Mantenimiento · Venezuela<br>aurora.mantemiento@gmail.com · +58 0412 0915616</div></footer>
+<footer><div class="w">© Aurora Mantenimiento · Carúpano, Venezuela<br>aurora.mantenimiento@gmail.com · +58 0412 0915616</div></footer>
 <script>
 // ====== EDITA SOLO ESTO ======
-var APK_URL="https://github.com/AuroraNegocio/Aurora/releases/latest/download/Aurora.Negocio.Android.apk";        // enlace directo al APK (GitHub Releases, gratis)
-var APK_VERSION="v1.4";    // ej. "v1.0"
+var APK_URL="";        // enlace directo al APK (GitHub Releases, gratis)
+var APK_VERSION="";    // ej. "v1.0"
 var TESTIMONIOS=[];    // [{t:"Me ordenó el negocio",n:"María, bodega"}]
 // =============================
 var d=document.getElementById("dl"),m=document.getElementById("msg");
 if(APK_URL){d.href=APK_URL;if(APK_VERSION)d.textContent="⬇ Descargar APK "+APK_VERSION}
 else d.addEventListener("click",function(e){e.preventDefault();m.textContent="La descarga estará disponible muy pronto. Escríbeme por WhatsApp y te ayudo."});
 document.getElementById("wa").href="https://wa.me/584120915616?text="+encodeURIComponent("Hola, probé Aurora Negocio y quiero mi código de activación.");
-if(TESTIMONIOS.length){var h="<h2 style='margin-top:40px'>Lo que dicen quienes la usan</h2><div class='grid'>";
+if(TESTIMONIOS.length){var h="<h2>Lo que dicen quienes la usan</h2><div class='tes-grid'>";
 TESTIMONIOS.forEach(function(x){h+="<div class='card'><p class='q'>“"+x.t+"”</p><div class='who'>— "+x.n+"</div></div>"});
 document.getElementById("tes").innerHTML=h+"</div>"}
+var tp=document.getElementById("top");
+function sc(){tp.classList.toggle("on",window.scrollY>12)}
+sc();window.addEventListener("scroll",sc,{passive:true});
 </script></body></html>
